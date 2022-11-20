@@ -99,7 +99,12 @@ void AWarriorCharacter::Turn(float AxisValue)
 
 void AWarriorCharacter::EquipItem()
 {
-	const TObjectPtr<AKingKey> Key = Cast<AKingKey>(OverlapItem);
+	TObjectPtr<AKingKey> Key = nullptr;
+	if (OverlapItem)
+	{
+		Key = Cast<AKingKey>(OverlapItem);
+	}
+	
 	if (Key)
 	{
 		bHasKey = true;
@@ -109,7 +114,11 @@ void AWarriorCharacter::EquipItem()
 
 void AWarriorCharacter::Interact()
 {
-	const TObjectPtr<AInteractiveDoor> Door = Cast<AInteractiveDoor>(OverlapItem);
+	TObjectPtr<AInteractiveDoor> Door = nullptr;
+	if (OverlapItem)
+	{
+		Door = Cast<AInteractiveDoor>(OverlapItem);
+	}
 	
 	if (Door && bHasKey)
 	{
